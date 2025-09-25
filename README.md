@@ -28,7 +28,7 @@ Stack Tower est un jeu d'empilement de blocs en 3D où l'objectif est de constru
 
 1. **Cloner le repository**
    ```bash
-   git clone https://github.com/votre-username/stack-tower.git
+   git clone https://github.com/akam731/stack-game.git
    cd stack-tower
    ```
 
