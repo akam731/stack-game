@@ -2,7 +2,7 @@
 
 Un jeu de stacking 3D moderne et responsive développé avec Three.js et Cannon.js.
 
-![Stack Tower Game](https://via.placeholder.com/800x400/4bd3cb/ffffff?text=Stack+Tower+Game)
+![Stack Tower Game](public/ecranJeu.png)
 
 ## 🎮 À propos du jeu
 
@@ -161,14 +161,11 @@ npm run preview
 
 ## 🎮 Screenshots
 
-### Écran de chargement
-![Loading Screen](https://via.placeholder.com/400x300/1e3c72/ffffff?text=Loading+Screen)
-
 ### Interface de jeu
-![Game Interface](https://via.placeholder.com/400x300/4bd3cb/ffffff?text=Game+Interface)
+![Game Interface](public/ecranJeu.png)
 
 ### Écran de fin
-![Game Over](https://via.placeholder.com/400x300/ff6b6b/ffffff?text=Game+Over)
+![Game Over](public/ecranFin.png)
 
 ---
 
