@@ -1,0 +1,473 @@
+/* ===== STYLES DE BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SUSE Mono', monospace;
+    background-image: linear-gradient(to bottom, #8cf2b7, #67e3c3, #4bd3cb, #41c2cd, #49b0c9);
+    overflow: hidden;
+    height: 100vh;
+    color: white;
+}
+
+/* ===== ÉCRAN DE CHARGEMENT ===== */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease-out;
+}
+
+#loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-container {
+    text-align: center;
+    position: relative;
+}
+
+.game-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.title-first {
+    color: #00d4ff;
+    display: block;
+}
+
+.title-second {
+    color: #ff6b6b;
+    display: block;
+}
+
+.loading-percentage {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #00d4ff;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top: 6px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+    position: relative;
+    bottom: 80px;
+    z-index: 10;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 20px;
+}
+
+.play-button {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    color: white;
+    font-family: 'SUSE Mono', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    position: relative;
+    bottom: -10px;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.play-button:hover {
+    transform: translateX(-50%) translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+}
+
+.play-icon {
+    font-size: 1rem;
+}
+
+/* ===== PARTICULES ===== */
+#game-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.game-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.stars-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 4s infinite;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+/* ===== HUD SIMPLE ===== */
+#score-display {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    z-index: 100;
+    font-family: 'SUSE Mono', monospace;
+}
+
+#start-message {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    color: white;
+    text-align: center;
+    z-index: 100;
+    font-family: 'SUSE Mono', monospace;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    width: 580px;
+}
+
+#start-message.hidden {
+    display: none;
+}
+
+kbd {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: 'SUSE Mono', monospace;
+}
+
+/* ===== ÉCRAN DE GAME OVER ===== */
+#results {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #8cf2b7, #67e3c3, #4bd3cb, #41c2cd, #49b0c9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: 'SUSE Mono', monospace;
+}
+
+.game-over-content {
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.score-section {
+    margin-bottom: 2rem;
+}
+
+.score-label {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+.score-value {
+    font-size: 4rem;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.best-score-section {
+    margin-bottom: 3rem;
+}
+
+.best-score-label {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+.best-score-value {
+    font-size: 2.5rem;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.replay-button {
+    background: transparent;
+    border: 2px solid white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    color: white;
+    font-family: 'SUSE Mono', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+.replay-button:hover {
+    transform: scale(1.05);
+    background: transparent;
+    color: white;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+.replay-icon {
+    font-size: 1rem;
+    color: white;
+}
+
+.replay-button:hover .replay-icon {
+    color: white;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablettes (768px et moins) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    #score-display {
+        font-size: 2.5rem;
+        top: 20px;
+    }
+    
+    #start-message {
+        font-size: 1rem;
+        padding: 0 20px;
+        line-height: 1.3;
+    }
+    
+    .game-over-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .score-value {
+        font-size: 3rem;
+    }
+    
+    .best-score-value {
+        font-size: 2rem;
+    }
+    
+    .replay-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    
+    #loading-screen h1 {
+        font-size: 2.5rem;
+    }
+    
+    .loading-text {
+        font-size: 1rem;
+    }
+    
+    .play-button {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Mobiles (480px et moins) */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+    
+    #score-display {
+        width: 300px;
+        font-size: 2rem;
+        top: 15px;
+    }
+    
+    #start-message {
+        padding: 0 15px;
+        line-height: 1.3;
+    }
+    
+    .game-over-content h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .score-section {
+        margin-bottom: 1.5rem;
+    }
+    
+    .score-label {
+        font-size: 1.5rem;
+    }
+    
+    .score-value {
+        font-size: 2.5rem;
+    }
+    
+    .best-score-section {
+        margin-bottom: 2rem;
+    }
+    
+    .best-score-label {
+        font-size: 1.2rem;
+    }
+    
+    .best-score-value {
+        font-size: 1.8rem;
+    }
+    
+    .replay-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    #loading-screen h1 {
+        font-size: 2rem;
+    }
+    
+    .loading-text {
+        font-size: 0.9rem;
+    }
+    
+    .play-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+    
+    .spinner {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Très petits écrans (320px et moins) */
+@media (max-width: 320px) {
+    #score-display {
+        font-size: 1.8rem;
+    }
+    
+    #start-message {
+        padding: 0 10px;
+    }
+    
+    .game-over-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .score-value {
+        font-size: 2rem;
+    }
+    
+    .best-score-value {
+        font-size: 1.5rem;
+    }
+    
+    #loading-screen h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Orientation paysage sur mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    #score-display {
+        top: 10px;
+        font-size: 1.8rem;
+    }
+    
+    .game-over-content {
+        padding: 20px;
+    }
+    
+    .game-over-content h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .score-section {
+        margin-bottom: 1rem;
+    }
+    
+    .best-score-section {
+        margin-bottom: 1.5rem;
+    }
+    
+    #loading-screen h1 {
+        font-size: 2rem;
+    }
+    
+    .loading-text {
+        margin-top: 10px;
+    }
+}

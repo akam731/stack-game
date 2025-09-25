@@ -1,0 +1,73 @@
+ 
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Vite App</title>
+  </head>
+  <body>
+  <!-- Écran de chargement -->
+  <div id="loading-screen">
+    <div class="loading-container">
+      <h1 class="game-title">
+        <span class="title-first">STACK</span>
+        <span class="title-second">TOWER</span>
+      </h1>
+      
+      <div class="loading-percentage" id="loading-percentage">0</div>
+      
+      <div class="loading-spinner"></div>
+      
+      <div class="loading-text" id="loading-text">Chargement...</div>
+      
+      <button class="play-button" id="play-button" style="display: none;">
+        <i class="fa-solid fa-play play-icon"></i>
+        <span class="play-text">Jouer</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Particules dans l'arène de jeu -->
+  <div id="game-particles"></div>
+
+  <!-- Score simple en haut au milieu -->
+  <div id="score-display">0</div>
+  
+  <!-- Message de contrôle en bas (disparaît au début) -->
+  <div id="start-message">
+    Appuyer sur <kbd>ENTRÉE</kbd> ou <kbd>ESPACE</kbd> pour commencer
+  </div>
+
+  <!-- Écran de Game Over -->
+  <div id="results">
+    <!-- Particules d'étoiles en arrière-plan -->
+    <div class="stars-background"></div>
+    
+    <div class="game-over-content">
+      <div class="score-section">
+        <h2 class="score-label">Score</h2>
+        <div class="score-value" id="final-score">0</div>
+      </div>
+      
+      <div class="best-score-section">
+        <h3 class="best-score-label">Meilleur</h3>
+        <div class="best-score-value" id="final-best-score">0</div>
+      </div>
+      
+      <button class="replay-button" id="replay-btn">
+        <i class="fa-solid fa-rotate-left replay-icon"></i>
+        <span class="replay-text">Rejouer</span>
+      </button>
+    </div>
+  </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
